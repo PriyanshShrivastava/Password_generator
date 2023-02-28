@@ -47,7 +47,6 @@ function handleCheckBoxChange() {
       checkboxCount++;
     }
   });
-  console.log(checkboxCount);
 
   //special condition
   if (passwordLength < checkboxCount) {
@@ -145,7 +144,6 @@ async function copyPassword() {
 //Copy button event listener
 
 copyBtnEl.addEventListener("click", () => {
-  console.log("Copy btn clicked");
   if (displayPasswordEl.value) copyPassword();
 });
 
@@ -182,9 +180,7 @@ generateBtn.addEventListener("click", () => {
 
   //remaining adddition
   for (let i = 0; i < passwordLength - funcArr.length; i++) {
-    console.log(passwordLength);
     let randIndex = getRndInteger(0, funcArr.length);
-    console.log("randIndex" + randIndex);
     password += funcArr[randIndex]();
   }
   //shuffle the password
