@@ -469,6 +469,8 @@ input[type="range"].slider.slider-progress:active::-ms-fill-lower {
   cursor: pointer;
 }
 
+/* Media query for small devices  */
+
 @media (max-width: 480px) {
   .container {
     width: 300px;

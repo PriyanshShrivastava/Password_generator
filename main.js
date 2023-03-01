@@ -1,3 +1,5 @@
+// Grabbing all the elements required
+
 const displayPasswordEl = document.querySelector("[data-showpassword]");
 const copyBtnEl = document.querySelector("[data-copy]");
 const passwordStrengthEl = document.querySelector("[data-passwordLength]");
@@ -60,6 +62,8 @@ allCheckedEl.forEach((checkbox) => {
   checkbox.addEventListener("change", handleCheckBoxChange);
 });
 
+// Function to generate random numbers, characters and symbols
+
 function getRndInteger(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
@@ -81,8 +85,6 @@ function generateSymbol() {
   return symbols.charAt(randNum);
 }
 
-// Checking the strength of the password
-
 function setIndicator(color) {
   indicator.style.backgroundColor = color;
   indicator.style.border = `3px solid ${color}`;
@@ -100,6 +102,8 @@ function shufflePassword(array) {
   array.forEach((el) => (str += el));
   return str;
 }
+
+// Function to check the strength of password
 
 function calcStrength() {
   let hasUpper = false;
@@ -133,8 +137,10 @@ async function copyPassword() {
   } catch (e) {
     passCopyEl.innerText = "Failed";
   }
-  //to make copy wala span visible
+  //to make the copy span visible
   passCopyEl.classList.add("active");
+
+  // removing it after 1.5 sec
 
   setTimeout(() => {
     passCopyEl.classList.remove("active");
@@ -161,7 +167,7 @@ generateBtn.addEventListener("click", () => {
   }
   password = "";
 
-  //let's put the stuff mentioned by checkboxes
+  //Creating an array and adding what all checkboxes user has clicked.
 
   let funcArr = [];
 
@@ -183,15 +189,20 @@ generateBtn.addEventListener("click", () => {
     let randIndex = getRndInteger(0, funcArr.length);
     password += funcArr[randIndex]();
   }
-  //shuffle the password
+
+  //Password suffling for more security and uniqueness
 
   password = shufflePassword(Array.from(password));
 
-  //show in UI
+  //Display the password
   displayPasswordEl.value = password;
+
+  // Calcutating the strength of password to show indicator in accordance with it
 
   calcStrength();
 });
+
+// Button effect functions
 
 function scaleUp() {
   generateContainerBtn.style.transform = "scale(1)";
